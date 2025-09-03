@@ -9,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 
 # Ищем Qt6 Widgets
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Sql)
 
 # Список файлов проекта
 set(PROJECT_SOURCES
@@ -22,7 +22,11 @@ set(PROJECT_SOURCES
 # Создаём исполняемый файл
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES}
     category.h category.cpp
-    transaction.h )
+    transaction.h
+    databasemanager.h databasemanager.cpp )
 
 # Линкуем Qt Widgets
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE Qt6::Widgets
+            Qt6::Sql
+)

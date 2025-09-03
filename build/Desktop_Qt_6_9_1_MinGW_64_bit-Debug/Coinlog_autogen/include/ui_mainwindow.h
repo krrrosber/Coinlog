@@ -30,6 +30,8 @@ public:
     QTextEdit *actualPeriod;
     QListView *listView;
     QListView *listView_2;
+    QPushButton *addTransaction;
+    QPushButton *addCategory;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -45,7 +47,7 @@ public:
         widget->setGeometry(QRect(230, 10, 241, 201));
         changePeriod = new QPushButton(centralwidget);
         changePeriod->setObjectName("changePeriod");
-        changePeriod->setGeometry(QRect(40, 143, 141, 41));
+        changePeriod->setGeometry(QRect(40, 170, 141, 41));
         actualPeriod = new QTextEdit(centralwidget);
         actualPeriod->setObjectName("actualPeriod");
         actualPeriod->setGeometry(QRect(10, 230, 461, 51));
@@ -55,6 +57,12 @@ public:
         listView_2 = new QListView(centralwidget);
         listView_2->setObjectName("listView_2");
         listView_2->setGeometry(QRect(240, 300, 231, 281));
+        addTransaction = new QPushButton(centralwidget);
+        addTransaction->setObjectName("addTransaction");
+        addTransaction->setGeometry(QRect(40, 30, 141, 41));
+        addCategory = new QPushButton(centralwidget);
+        addCategory->setObjectName("addCategory");
+        addCategory->setGeometry(QRect(40, 100, 141, 41));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -73,6 +81,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         changePeriod->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        addTransaction->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        addCategory->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };

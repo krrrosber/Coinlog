@@ -7,6 +7,7 @@
 
 struct Transaction
 {
+
     Transaction(int64_t i, std::chrono::system_clock::time_point t,int64_t a, int c, std::string n):
         id(i),
         timestamp(t),

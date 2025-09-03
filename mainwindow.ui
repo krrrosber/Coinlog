@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>143</y>
+      <y>170</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -65,6 +65,32 @@
       <width>231</width>
       <height>281</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addTransaction">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addCategory">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>100</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
     </property>
    </widget>
   </widget>
