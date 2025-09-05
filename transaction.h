@@ -17,9 +17,9 @@ struct Transaction
     {}
     const int64_t id;                                          // уникальный индефикатор
     const std::chrono::system_clock::time_point timestamp;    // время операции
-    int64_t amount;                                     // сумма в копейках
-    int categoryId;                                     // категория операции
-    std::string note;                                   // заметка
+    int64_t amount;                                             // сумма в копейках
+    int categoryId;                                         // категория операции
+    std::string note;                                       // заметка
 };
 
 #endif // TRANSACTION_H
