@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(Coinlog LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -23,7 +23,8 @@ set(PROJECT_SOURCES
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES}
     category.h category.cpp
     transaction.h
-    databasemanager.h databasemanager.cpp )
+    databasemanager.h databasemanager.cpp
+    analytics.h analytics.cpp )
 
 # Линкуем Qt Widgets
 target_link_libraries(${PROJECT_NAME}

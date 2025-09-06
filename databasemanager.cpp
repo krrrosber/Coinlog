@@ -1,5 +1,5 @@
 #include "databasemanager.h"
-
+#include<vector>
 DataBaseManager::DataBaseManager()
     : dbPath(),connectName("coinlog_connect"), db()
 {
@@ -97,11 +97,33 @@ bool DataBaseManager::addTransaction(const Transaction &t){
     return true;
 }
 
-
-
 //выборка транзакций
 std::vector<Transaction> DataBaseManager::queryTransaction(std::chrono::system_clock::time_point from, std::chrono::system_clock::time_point to ){
+    std::vector<Transaction> buffer;
+    QSqlQuery query(db);
+    query.prepare("SELECT id, Time, Price, idCategory, note FROM transactions WHERE Time > ? AND Time < ?");
+    qint64 from_ms = std::chrono::duration_cast<std::chrono::milliseconds>(from.time_since_epoch()).count();
+    qint64 to_ms = std::chrono::duration_cast<std::chrono::milliseconds>(to.time_since_epoch()).count();
+    query.bindValue(0,from_ms);
+    query.bindValue(1,to_ms);
 
+    if(query.exec()){
+        while(query.next()){
+            int64_t id = query.value(0).toLongLong();
+            const std::chrono::system_clock::time_point timestamp = std::chrono::system_clock::time_point(std::chrono::milliseconds(query.value(1).toLongLong()));    // время операции
+            int64_t amount = query.value(2).toLongLong();                                             // сумма в копейках
+            int categoryId= query.value(3).toInt();                                         // категория операции
+            std::string note = query.value(4).toString().toStdString();
+
+            Transaction buf(id,timestamp,amount,categoryId,note);
+            buffer.push_back(buf);
+        }
+    }
+    else{
+        qWarning()<<"Que"<<query.lastError().text();
+    }
+
+    return buffer;
 }
 
 //удалить старые записи
