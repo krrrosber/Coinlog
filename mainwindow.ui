@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>640</height>
+    <width>1023</width>
+    <height>733</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="widget" native="true">
+   <widget class="QWidget" name="expenses" native="true">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>241</width>
+      <x>630</x>
+      <y>140</y>
+      <width>381</width>
       <height>201</height>
      </rect>
     </property>
@@ -27,10 +27,10 @@
    <widget class="QPushButton" name="changePeriod">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>170</y>
+      <x>20</x>
+      <y>310</y>
       <width>141</width>
-      <height>41</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
@@ -40,40 +40,20 @@
    <widget class="QTextEdit" name="actualPeriod">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>230</y>
-      <width>461</width>
+      <x>220</x>
+      <y>10</y>
+      <width>771</width>
       <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QListView" name="listView">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>300</y>
-      <width>231</width>
-      <height>281</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QListView" name="listView_2">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>300</y>
-      <width>231</width>
-      <height>281</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="addTransaction">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>30</y>
+      <x>20</x>
+      <y>80</y>
       <width>141</width>
-      <height>41</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
@@ -83,14 +63,44 @@
    <widget class="QPushButton" name="addCategory">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>100</y>
+      <x>20</x>
+      <y>520</y>
       <width>141</width>
-      <height>41</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
      <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="profit" native="true">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>140</y>
+      <width>371</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableProfit">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>391</y>
+      <width>371</width>
+      <height>281</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableView" name="Expenses">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>390</y>
+      <width>381</width>
+      <height>281</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -99,7 +109,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>480</width>
+     <width>1023</width>
      <height>22</height>
     </rect>
    </property>

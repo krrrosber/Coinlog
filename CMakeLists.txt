@@ -24,7 +24,8 @@ qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES}
     category.h category.cpp
     transaction.h
     databasemanager.h databasemanager.cpp
-    analytics.h analytics.cpp )
+    analytics.h analytics.cpp
+    categorymanager.h categorymanager.cpp )
 
 # Линкуем Qt Widgets
 target_link_libraries(${PROJECT_NAME}

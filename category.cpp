@@ -1,4 +1,5 @@
 #include "category.h"
+#include <stdexcept>
 
 Category::Category(int i, std::string s, Type t):
     id(i), name(s), type(t)
@@ -10,7 +11,7 @@ void Category::setId(int i){
 }
 
 // получить id
-int Category::getId(){
+const int Category::getId() const {
     return id;
 }
 
@@ -35,13 +36,8 @@ Category::Type Category::getType(){
 }
 
 
-// создать категорию
-void Category::createCategory(int i, std::string s, Category::Type t){
-    Category c(i,s,t);
-}
-
-// удалить категорию
-void Category::deleteCategory(){
-    delete this;
-}
-
+  Category::Type Category::parseToType(int i){
+    if(i==0) return Category::Type::Expense;
+    if(i==1)return Category::Type::Income;
+    throw std::invalid_argument("Unknown category type");//в будущем нужно ловить исключение, выводить окно для ввода правильного типа
+  }

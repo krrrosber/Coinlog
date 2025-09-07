@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "analytics.h"
+#include "category.h"
+#include "databasemanager.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -17,6 +20,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    DataBaseManager dataBase;
+    Analytics analytics;
 };
 
 #endif // MAINWINDOW_H

@@ -126,6 +126,28 @@ std::vector<Transaction> DataBaseManager::queryTransaction(std::chrono::system_c
     return buffer;
 }
 
+std::vector<Category> DataBaseManager::queryCategories(){
+    std::vector<Category> buffer;
+    QSqlQuery query(db);
+    query.prepare("SELECT id, name, type FROM categories");
+
+    if(query.exec()){
+        while(query.next()){
+            int id = query.value(0).toInt();
+            std::string name = query.value(1).toString().toStdString();
+            int type = query.value(2).toInt();
+
+            auto t = Category::parseToType(type);
+            Category c(id,name,t);
+            buffer.push_back(c);
+        }
+    }
+    else{
+        qWarning()<<"Que"<<query.lastError().text();
+    }
+    return buffer;
+}
+
 //удалить старые записи
 void DataBaseManager::pruneOlderThan(std::chrono::system_clock::time_point t){
 

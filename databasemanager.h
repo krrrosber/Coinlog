@@ -1,6 +1,7 @@
 #ifndef DATABASEMANAGER_H
 #define DATABASEMANAGER_H
 
+#include "category.h"
 #include"transaction.h"
 #include <vector>
 #include <QtSql/QSqlDatabase>
@@ -23,7 +24,7 @@ public:
     void setPath(std::string s){
         dbPath=QString::fromStdString(s);
     }
-
+std::vector<Category> queryCategories();
     QString getPath(){
         return dbPath;
     }

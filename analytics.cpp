@@ -1,7 +1,8 @@
 #include "analytics.h"
+#include "databasemanager.h"
 
 //сумма за день
-std::unordered_map<int,int64_t> Analytics::getDailySum(){
+std::unordered_map<int,int64_t> Analytics::getDailySum(DataBaseManager& db){
 
 
     std::unordered_map<int,int64_t> totals;
@@ -15,17 +16,17 @@ std::unordered_map<int,int64_t> Analytics::getDailySum(){
 
     auto end_of_day = start_of_day + std::chrono::hours(24);
 
+    activities = db.queryTransaction(start_of_day,end_of_day);
+
     for(const auto& tr:activities){
-        if(tr.timestamp >= start_of_day && tr.timestamp < end_of_day ){
             totals[tr.categoryId] +=tr.amount;
-        }
     }
 
     return totals;
 }
 
  //сумма за неделю
-std::unordered_map<int,int64_t> Analytics::getWeekSum(){
+std::unordered_map<int,int64_t> Analytics::getWeekSum(DataBaseManager& db){
     std::unordered_map<int, int64_t> totals;
     auto days= floor<std::chrono::days>(std::chrono::system_clock::now());
     std::chrono::year_month_day ymd{days};
@@ -40,18 +41,17 @@ std::unordered_map<int,int64_t> Analytics::getWeekSum(){
     auto start_of_week = time_point_cast<std::chrono::milliseconds>(day_start - std::chrono::days{days_since_monday - 1});
     auto end_of_week   = start_of_week + std::chrono::days(7); // 7 дней
 
+    activities = db.queryTransaction(start_of_week,end_of_week);
 
     for(const auto& tr:activities){
-        if(tr.timestamp >= start_of_week && tr.timestamp < end_of_week ){
             totals[tr.categoryId] +=tr.amount;
-        }
     }
 
     return totals;
 }
 
 //сумма за месяц
-std::unordered_map<int,int64_t> Analytics::getMonthSum(){
+std::unordered_map<int,int64_t> Analytics::getMonthSum(DataBaseManager &db){
       std::unordered_map<int, int64_t> totals;
 
     auto days= floor<std::chrono::days>(std::chrono::system_clock::now());
@@ -65,10 +65,10 @@ std::unordered_map<int,int64_t> Analytics::getMonthSum(){
     std::chrono::sys_days start_of_next_month{start_of_next_month_ymd};
     auto end_of_month_ms = time_point_cast<std::chrono::milliseconds>(start_of_next_month);
 
-    for(const auto& tr:activities){
-        if(tr.timestamp >= month_start_ms && tr.timestamp < end_of_month_ms ){
-            totals[tr.categoryId] +=tr.amount;
-        }
+    activities = db.queryTransaction(start_of_next_month,end_of_month_ms);
+
+    for(const auto& tr:activities){ 
+            totals[tr.categoryId] +=tr.amount;  
     }
 
     return totals;

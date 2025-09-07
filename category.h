@@ -11,13 +11,13 @@ public:
     Category(int i, std::string s, Type t);
 
     void setId(int id);                                             // установить id
-    int getId();                                                    // получить id
+    const int getId() const;                                                    // получить id
     void setName(std::string);                                      // установить название
     std::string getName();                                          // получить название
     void setType(Type t);                                           // установить тип
     Type getType();                                                 // получить тип
-    void createCategory(int i, std::string s, Category::Type t);    // создать категорию
-    void deleteCategory();                                          // удалить категорию
+
+    static Type parseToType(int i);
 
 private:
     int id;                                                         // уникальный индефикатор категории
