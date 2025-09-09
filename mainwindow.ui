@@ -83,7 +83,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTableView" name="tableProfit">
+   <widget class="QTableView" name="tableExpenses">
     <property name="geometry">
      <rect>
       <x>235</x>
@@ -93,7 +93,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTableView" name="Expenses">
+   <widget class="QTableView" name="tableProfit">
     <property name="geometry">
      <rect>
       <x>630</x>

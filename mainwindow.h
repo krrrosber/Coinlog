@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include "analytics.h"
-#include "category.h"
+#include "categorymanager.h"
 #include "databasemanager.h"
+#include "dataexchangeui.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -21,6 +22,8 @@ public:
 private:
     Ui::MainWindow *ui;
     DataBaseManager dataBase;
+    CategoryManager categoryManager;
+    DataExchangeUI dataExchangeUI;
     Analytics analytics;
 };
 

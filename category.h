@@ -15,7 +15,7 @@ public:
     void setName(std::string);                                      // установить название
     std::string getName();                                          // получить название
     void setType(Type t);                                           // установить тип
-    Type getType();                                                 // получить тип
+    const Type getType() const;                                                 // получить тип
 
     static Type parseToType(int i);
 

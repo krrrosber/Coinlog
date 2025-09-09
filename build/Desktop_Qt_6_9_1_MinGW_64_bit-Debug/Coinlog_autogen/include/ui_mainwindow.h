@@ -32,8 +32,8 @@ public:
     QPushButton *addTransaction;
     QPushButton *addCategory;
     QWidget *profit;
+    QTableView *tableExpenses;
     QTableView *tableProfit;
-    QTableView *Expenses;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -62,12 +62,12 @@ public:
         profit = new QWidget(centralwidget);
         profit->setObjectName("profit");
         profit->setGeometry(QRect(240, 140, 371, 201));
+        tableExpenses = new QTableView(centralwidget);
+        tableExpenses->setObjectName("tableExpenses");
+        tableExpenses->setGeometry(QRect(235, 391, 371, 281));
         tableProfit = new QTableView(centralwidget);
         tableProfit->setObjectName("tableProfit");
-        tableProfit->setGeometry(QRect(235, 391, 371, 281));
-        Expenses = new QTableView(centralwidget);
-        Expenses->setObjectName("Expenses");
-        Expenses->setGeometry(QRect(630, 390, 381, 281));
+        tableProfit->setGeometry(QRect(630, 390, 381, 281));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

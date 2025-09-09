@@ -65,7 +65,7 @@ std::unordered_map<int,int64_t> Analytics::getMonthSum(DataBaseManager &db){
     std::chrono::sys_days start_of_next_month{start_of_next_month_ymd};
     auto end_of_month_ms = time_point_cast<std::chrono::milliseconds>(start_of_next_month);
 
-    activities = db.queryTransaction(start_of_next_month,end_of_month_ms);
+    activities = db.queryTransaction(month_start_ms,end_of_month_ms);
 
     for(const auto& tr:activities){ 
             totals[tr.categoryId] +=tr.amount;  

@@ -31,7 +31,7 @@ void Category::setType(Type t){
 }
 
 // получить тип
-Category::Type Category::getType(){
+const Category::Type Category::getType() const{
     return type;
 }
 
