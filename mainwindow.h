@@ -18,7 +18,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void openCalendar();
+    void refreshLists(int i);
 private:
     Ui::MainWindow *ui;
     DataBaseManager dataBase;

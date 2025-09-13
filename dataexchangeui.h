@@ -12,14 +12,16 @@ class DataExchangeUI : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataExchangeUI(DataBaseManager* db = nullptr,
+    explicit DataExchangeUI(Analytics& analyticsRef,
+                            DataBaseManager* db = nullptr,
                             CategoryManager* cm = nullptr,
                             QObject* parent = nullptr);
 
-    void firstAutomaticUnload();
+    void firstAutomaticUnload(int i);
     void RowCountCounter();
     QStandardItemModel* createModelExpenseTable();
     QStandardItemModel* createModelProfitTable();
+    void clearTable();
 
     std::unordered_map<int,int64_t> firstMap;
     std::vector<std::pair<int, qint64>> RowExpenseTable;
@@ -27,7 +29,7 @@ public:
 
 private:
     DataBaseManager* dataBase;
-    Analytics analytics;
+    Analytics &analytics;
     CategoryManager* categoryManager;
 };
 

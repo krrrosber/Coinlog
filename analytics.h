@@ -5,7 +5,6 @@
 #include "transaction.h"
 #include <unordered_map>
 #include <vector>
-#include <chrono>
 class Analytics
 {
 public:
@@ -14,11 +13,14 @@ public:
     std::unordered_map<int,int64_t> getDailySum(DataBaseManager& db);     //сумма за день
     std::unordered_map<int,int64_t> getWeekSum(DataBaseManager& db);     //сумма за неделю
     std::unordered_map<int,int64_t> getMonthSum(DataBaseManager& db);    //сумма за месяц
-    std::unordered_map<int,int64_t> getPeriodSum(std::chrono::system_clock::time_point from, std::chrono::system_clock::time_point to);  //сумма за период
+    std::unordered_map<int,int64_t> getPeriodSum(DataBaseManager &db);  //сумма за период
+    void setTime(const QDate &t);
 
 
 private:
-    std::vector<Transaction> activities;            //список транзакций
+    std::vector<Transaction> activities;//список транзакций
+    QDate startDate;
+    QDate endDate;
 };
 
 #endif // ANALYTICS_H

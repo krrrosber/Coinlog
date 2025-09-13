@@ -2,7 +2,8 @@
 #include "dataexchangeui.h"
 #include <QDebug>
 
-DataExchangeUI::DataExchangeUI(DataBaseManager* db,
+DataExchangeUI::DataExchangeUI(Analytics& analyticsRef,
+                               DataBaseManager* db,
                                CategoryManager* cm,
                                QObject* parent)
     : QObject(parent),
@@ -10,7 +11,7 @@ DataExchangeUI::DataExchangeUI(DataBaseManager* db,
     RowExpenseTable(),
     RowProfitTable(),
     dataBase(db),
-    analytics(),       // analytics можно оставить по умолчанию
+    analytics(analyticsRef),       // analytics можно оставить по умолчанию
     categoryManager(cm)
 {
     // безопасная инициализация: очистить векторы и карты
@@ -20,10 +21,29 @@ DataExchangeUI::DataExchangeUI(DataBaseManager* db,
 }
 
 
+void DataExchangeUI::clearTable(){
+    RowExpenseTable.clear();
+    RowProfitTable.clear();
+}
 
-
-void DataExchangeUI::firstAutomaticUnload(){
-    firstMap = analytics.getMonthSum(*dataBase);
+void DataExchangeUI::firstAutomaticUnload(int i)
+{
+    switch (i) {
+    case 1:
+        firstMap = analytics.getDailySum(*dataBase);
+        break;
+    case 2:
+        firstMap = analytics.getWeekSum(*dataBase);
+        break;
+    case 3:
+        firstMap = analytics.getMonthSum(*dataBase);
+        break;
+    case 4:
+        firstMap = analytics.getPeriodSum(*dataBase);
+        break;
+    default:
+        break;
+    }
 }
 
 void DataExchangeUI::RowCountCounter(){

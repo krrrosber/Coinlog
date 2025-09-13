@@ -74,4 +74,45 @@ std::unordered_map<int,int64_t> Analytics::getMonthSum(DataBaseManager &db){
     return totals;
 
 }
-std::unordered_map<int,int64_t> Analytics::getPeriodSum(std::chrono::system_clock::time_point from, std::chrono::system_clock::time_point to){}  //сумма за период
+std::unordered_map<int,int64_t> Analytics::getPeriodSum(DataBaseManager &db){  //сумма за период
+    std::unordered_map<int, int64_t> totals;
+qDebug() << "this = " << this;
+    qDebug()<<startDate;
+    qDebug()<<endDate;
+    auto fromMs = QDateTime(startDate,QTime(0,0)).toMSecsSinceEpoch();
+    auto toMs = QDateTime(endDate,QTime(0,0)).toMSecsSinceEpoch();
+
+    auto start = std::chrono::system_clock::time_point{std::chrono::milliseconds(fromMs)};
+    auto end   = std::chrono::system_clock::time_point{std::chrono::milliseconds(toMs)};
+    qDebug()<<fromMs;
+    qDebug()<<toMs;
+
+    activities = db.queryTransaction(start,end);
+
+    for(const auto& i:activities){
+        totals[i.categoryId] +=i.amount;
+    }
+
+    return totals;
+
+}
+
+void Analytics::setTime(const QDate &date)
+{
+
+    qDebug() << "this = " << this;
+    if (!startDate.isValid()) {
+        startDate = date;
+        endDate = QDate();  // очищаем конец диапазона
+    } else if (!endDate.isValid()) {
+        endDate = date;
+        if (startDate > endDate)
+            std::swap(startDate, endDate);
+    } else {
+        // оба валидны — начинаем новый выбор
+        startDate = date;
+        endDate = QDate();
+    }
+    qDebug() << "Start:" << startDate << "End:" << endDate;
+}
+
